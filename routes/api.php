@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KeuanganController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,3 +23,5 @@ Route::get('/profile', [UserController::class,'index']);
 Route::put('/profile/{id}',[UserController::class,'update']);
 Route::post('keuangan',[KeuanganController::class,'store']);
 Route::put('keuangan/{id}',[KeuanganController::class,'update']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
