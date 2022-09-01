@@ -6,6 +6,7 @@ use App\Models\keuangan;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 
 class UserController extends Controller
@@ -65,7 +66,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -97,9 +98,8 @@ class UserController extends Controller
             $kontak = $request->kontak;
             $email = $request->email;
             
-    
-            $user = User::find($id);
             
+            $user = auth()->user();
             $user->name = $name;
             $user->alamat = $alamat;
             $user->kontak = $kontak;
@@ -109,13 +109,13 @@ class UserController extends Controller
             if ($valid) {
                 return response()->json([
                     'success' => true,
-                    $id,
+                    'id'=> $valid->id,
                     'message' => 'sukses',
                 ], 200);
             } else {
                 return response()->json([
                     'success' => false,
-                    $id,
+                    'id'=> $valid->id,
                     'message' => 'gagal',
                 ], 401);
             }

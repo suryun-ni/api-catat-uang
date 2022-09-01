@@ -20,23 +20,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Route::get('/profile', [UserController::class,'index']);
-Route::put('/profile/{id}',[UserController::class,'update']);
+
 Route::post('keuangan',[KeuanganController::class,'store']);
 Route::put('keuangan/{id}',[KeuanganController::class,'update']);
+Route::get('/index', [KeuanganController::class, 'index']);
+
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/profile', function(Request $request) {
-        return [
-            'status' => 'true',
-            'data'=> auth()->user(),
-            'message' => 'get sukses',
-        ]; 
-        
-        
-    });
-
+    Route::get('/profile',[AuthController::class, 'getProfile']);
+    Route::put('/profile',[UserController::class,'update']);
     // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);
 });

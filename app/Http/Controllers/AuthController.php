@@ -53,6 +53,28 @@ class AuthController extends Controller
             ->json(['status' => 'ture','message' => 'Login Berhasil '.$user->name.', Selamat Datang','access_token' => $token, 'token_type' => 'Bearer', ]);
     }
 
+    public function getProfile(Request $request) {
+        $user = auth()->user();
+        $response = [
+            'message' => 'Data User',
+            'data' => $user,
+        ];
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                $response,
+                'message' => 'data ditampilkan',
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'data kosong',
+            ], 401);
+        }
+        
+        
+    }
+
     public function logout()
     {
         auth()->user()->tokens()->delete();

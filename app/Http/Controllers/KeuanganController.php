@@ -17,6 +17,24 @@ class KeuanganController extends Controller
     public function index()
     {
         
+        $keuangan = keuangan::all();
+        // orderBy('name', 'DESC')->get();;
+        $response = [
+            'message' => 'Data Keuangan',
+            'data' => $keuangan,
+        ];
+        if ($keuangan) {
+            return response()->json([
+                'success' => true,
+                $response,
+                'message' => 'data ditampilkan',
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'data kosong',
+            ], 401);
+        }
     }
 
     /**

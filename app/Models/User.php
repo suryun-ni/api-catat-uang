@@ -18,6 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $table="users";
+    public function article(){
+    	return $this->belongsTo('App\Models\keuangan');
+    }
     // public $timestamps = false;
     protected $fillable = [
         'name',
@@ -26,6 +29,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
