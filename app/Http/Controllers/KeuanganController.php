@@ -68,7 +68,7 @@ class KeuanganController extends Controller
                     'uang_keluar'   => $request->input('uang_keluar')
                 ]);
     
-                if ($post) {    
+                if ($post) {         
                     return response()->json([
                         'success' => true,
                         'id'=> $post->id,
