@@ -26,6 +26,8 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'alamat' => $request->alamat,
+            'kontak' => $request->kontak,
             'password' => Hash::make($request->password)
          ]);
 
@@ -40,7 +42,7 @@ class AuthController extends Controller
         if (!Auth::attempt($request->only('email', 'password')))
         {
             return response()
-                ->json(['message' => 'Login gagal'], 401);
+                ->json(['status' => 'fail' ,'message' => 'Login gagal'], 401);
         }
 
         $user = User::where('email', $request['email'])->firstOrFail();
@@ -48,7 +50,7 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()
-            ->json(['message' => 'Login Berhasil '.$user->name.', Selamat Datang','access_token' => $token, 'token_type' => 'Bearer', ]);
+            ->json(['status' => 'ture','message' => 'Login Berhasil '.$user->name.', Selamat Datang','access_token' => $token, 'token_type' => 'Bearer', ]);
     }
 
     // method for user logout and delete token

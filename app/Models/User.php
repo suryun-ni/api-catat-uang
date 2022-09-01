@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $table="users";
-    
+    // public $timestamps = false;
     protected $fillable = [
         'name',
         'alamat',
