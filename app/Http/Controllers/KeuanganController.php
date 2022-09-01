@@ -17,8 +17,7 @@ class KeuanganController extends Controller
     public function index()
     {
         
-        $keuangan = keuangan::all();
-        // orderBy('name', 'DESC')->get();;
+        $keuangan = Keuangan::with('keuangan')->get();
         $response = [
             'message' => 'Data Keuangan',
             'data' => $keuangan,

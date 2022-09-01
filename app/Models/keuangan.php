@@ -15,7 +15,7 @@ class keuangan extends Model
         'uang_masuk',
         'uang_keluar',
     ];
-    public function tags(){ 
-        return $this->hasMany('App\Models\user'); 
+    public function keuangan(){ 
+        return $this->belongsTo(User::class, 'id_user'); 
     }
 }

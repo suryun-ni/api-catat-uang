@@ -18,8 +18,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $table="users";
-    public function article(){
-    	return $this->belongsTo('App\Models\keuangan');
+    public function User(){
+    	return $this->hasMany(keuangan::class);
     }
     // public $timestamps = false;
     protected $fillable = [
