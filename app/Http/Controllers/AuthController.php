@@ -53,7 +53,6 @@ class AuthController extends Controller
             ->json(['status' => 'ture','message' => 'Login Berhasil '.$user->name.', Selamat Datang','access_token' => $token, 'token_type' => 'Bearer', ]);
     }
 
-    // method for user logout and delete token
     public function logout()
     {
         auth()->user()->tokens()->delete();
