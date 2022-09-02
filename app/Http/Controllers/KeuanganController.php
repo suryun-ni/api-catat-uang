@@ -17,7 +17,10 @@ class KeuanganController extends Controller
     public function index()
     {
         
-        $keuangan = Keuangan::with('keuangan')->get();
+        $keuangan =keuangan::with([
+                'keuangan'
+            ])->get();
+        
         $response = [
             'message' => 'Data Keuangan',
             'data' => $keuangan,
